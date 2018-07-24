@@ -137,3 +137,4 @@ net/ipv4/netfilter/nf_nat_snmp_basic-asn1.h
 syscalls.c
 objs
 link-vmlinux.sh
+js/*
