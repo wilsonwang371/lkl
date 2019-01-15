@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
+import os
 import sys
-
-lib_paths = ["js/dlmalloc.ll", "js/libc.ll"]
 
 def is_in_literal(line, word):
     if line.count('"') < 2:
@@ -20,9 +19,12 @@ def main():
     if len(sys.argv) < 3:
         return -1
 
+    lib_paths = os.listdir("js")
+
     lib_val_defs = []
     lib_fnc_defs = []
     for path in lib_paths:
+        path = os.path.join("js", path)
         with open(path, "r") as fp:
             for line in fp:
                 if line[0] == "@" and " = " in line:
