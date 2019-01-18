@@ -1,0 +1,19 @@
+# LKL.js: Directly Running Linux Kernel Library on JavaScript
+
+Original LKL documentation is [here](Documentation/lkl.txt)
+
+## Building LKL.js
+
+```
+$ git clone git@github.com:juj/emsdk.git
+$ cd emsdk
+$ ./emsdk install sdk-tag-1.38.6-64bit
+$ ./emsdk activate sdk-tag-1.38.6-64bit
+$ source ./emsdk_env.sh
+$ cd ..
+$ git clone git@github.com:retrage/linux.git --branch=retrage/em-v2 --depth=1
+$ cd linux
+$ ./build.sh
+```
+
+A [Docker image](https://hub.docker.com/r/retrage/lkl-js) is available.
