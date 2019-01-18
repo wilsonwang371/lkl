@@ -27,15 +27,15 @@ $LINK -o $LKL/lib/liblkl.bc \
 echo "DIS liblkl.bc"
 $DIS -o $LKL/lib/liblkl.ll $LKL/lib/liblkl.bc
 mkdir -p js
-$CP ~/.emscripten_cache/asmjs/dlmalloc.bc js/dlmalloc.bc
-$CP ~/.emscripten_cache/asmjs/libc.bc js/libc.bc
-$CP ~/.emscripten_cache/asmjs/pthreads.bc js/pthreads.bc
-echo "DIS dlmalloc.bc"
-$DIS -o js/dlmalloc.ll js/dlmalloc.bc
-echo "DIS libc.bc"
-$DIS -o js/libc.ll js/libc.bc
-echo "DIS pthreads.bc"
-$DIS -o js/pthreads.ll js/pthreads.bc
+touch /tmp/dummy.c
+EMCC_DEBUG=1 $CC -o /tmp/dummy.js /tmp/dummy.c $CFLAGS
+for bc in `ls ~/.emscripten_cache/asmjs | grep "\.bc"`; do
+  $CP ~/.emscripten_cache/asmjs/$bc js/$bc
+done
+for bc in `ls js | grep "\.bc"`; do
+  echo "DIS $bc"
+  $DIS -o js/`echo $bc | sed 's/\.[^\.]*$/.ll/'` js/$bc
+done
 echo "PY rename_symbols.py"
 $PY rename_symbols.py $LKL/lib/liblkl.ll $LKL/lib/liblkl-mod.ll
 
