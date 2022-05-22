@@ -109,7 +109,6 @@ define do_autoconf
   $(eval CC := $(CROSS_COMPILE)gcc)
   $(eval LD_FMT := $(shell $(LD) -r -print-output-format))
   $(eval EXEC_FMT := $(shell echo $(LD_FMT) | cut -d "-" -f1))
-  $(if $(or $(filter $(EXEC_FMT),elf64),$(filter $(LD_FMT),pe-x86-64)),$(call set_kernel_config,LKL_CONFIG_64BIT,1))
   $(if $(filter $(EXEC_FMT),elf64-s390),$(call set_kernel_config,LKL_CONFIG_ENDIAN,1))
   $(if $(filter $(EXEC_FMT),$(POSIX_HOSTS)),$(call posix_host,$(LD_FMT)))
   $(if $(filter $(EXEC_FMT),$(NT_HOSTS)),$(call nt_host,$(LD_FMT)))

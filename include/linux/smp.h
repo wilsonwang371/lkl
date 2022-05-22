@@ -37,7 +37,7 @@ struct __call_single_data {
 
 /* Use __aligned() to avoid to use 2 cache lines for 1 csd */
 typedef struct __call_single_data call_single_data_t
-	__aligned(sizeof(struct __call_single_data));
+	__aligned();
 
 /*
  * Enqueue a llist_node on the call_single_queue; be very careful, read
