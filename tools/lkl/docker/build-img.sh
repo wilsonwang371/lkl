@@ -1,4 +1,3 @@
-@@ -0,0 +1,7 @@
 #!/bin/bash -x
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
